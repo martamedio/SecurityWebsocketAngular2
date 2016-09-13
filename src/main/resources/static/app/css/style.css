@@ -1,0 +1,10 @@
+.login-info{
+	text-align: center;
+    font-size: 13px;
+}
+.login{
+	padding-top: 3%;
+}
+.error-info{
+	color: red;
+}
