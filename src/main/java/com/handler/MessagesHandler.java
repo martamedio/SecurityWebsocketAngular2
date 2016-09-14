@@ -1,5 +1,11 @@
 package com.handler;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -13,28 +19,33 @@ public class MessagesHandler extends TextWebSocketHandler {
 
 	/**
 	 * Websocket Session.
-	 * */
-    WebSocketSession session;
+	 */
+	private Set<WebSocketSession> sessions = new HashSet<>();
 
 	public void serviceCallback(int counter) {
-        System.out.println("Trying to send:" + counter);
-        if (session != null && session.isOpen()) {
-            try {
-                System.out.println("Now sending:" + counter);
-                session.sendMessage(new TextMessage("{\"value\": \"" + counter + "\"}"));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("Don't have open session to send:" + counter);
-        }
+
+		try {
+			List<WebSocketSession> oldSessions = new ArrayList<>();
+			for (WebSocketSession session: sessions) {
+				if (session != null) {
+					if (session.isOpen()) {
+						session.sendMessage(new TextMessage("{\"value\": \"" + counter + "\"}"));
+					}else{
+						oldSessions.add(session);
+					}
+				}
+			}
+			sessions.removeAll(oldSessions);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
 
 	@Override
     public void afterConnectionEstablished(WebSocketSession session) {
-        System.out.println("Connection established");
-        this.session = session;
+        System.out.println("New connection established");
+		sessions.add(session);
     }
 
     @Override
