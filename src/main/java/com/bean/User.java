@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * User information for Spring Security Authentication
+ *
+ * */
 public class User implements Serializable {
 
 	/**

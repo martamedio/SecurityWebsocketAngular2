@@ -25,13 +25,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		// TODO: Dummy User
-
 		// Encoder for Passwords
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		// User
+
+		// Dummy User: at this point you should recover this bean from your BBDD
 		User user = new User();
-		user.setUsername("user");
+		user.setUsername(username);
 		user.setPassword(passwordEncoder.encode("1234"));
 		user.setEnabled(true);
 		user.setAccountNonExpired(true);
@@ -39,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		user.setCredentialsNonExpired(true);
 		user.addRole("ROLE_USER");
 
-		return new org.springframework.security.core.userdetails.User("user", passwordEncoder.encode("1234"),
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
 				true, true, user.isCredentialsNonExpired(), user.isAccountNonLocked(),
 				getAuthorities(user));
 
