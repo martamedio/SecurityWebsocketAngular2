@@ -18,4 +18,4 @@ You only need:
 ## Running it!
 
 * Run *ServerRunner* for set up the Endpoint
-* Access to: http://localhost:9090 and sign in with "user"/"1234", you can access to the user's private area and see the websocket counter
+* Access to: http://localhost:9090/ and sign in with *user/1234*, you can access to the user's private area and see the websocket counter
