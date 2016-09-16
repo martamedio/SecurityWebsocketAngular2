@@ -1,0 +1,24 @@
+<form class="form-horizontal">
+   <div class="form-group">
+      <div class="col-md-12">
+        <span class="login-info">You can try this demo with "user/1234"</span>
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-md-12">
+         <input [(ngModel)]="user.name" id="name" type="text" placeholder="Username" required>
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-md-12">
+         <input [(ngModel)]="user.password" id="password" type="password" placeholder="Password" required>
+      </div>
+   </div>
+   <div class="form-group last-form-group">
+       <div class="col-md-12">
+         <button (click)="login()" type="submit" class="btn btn-primary">Sign in!</button>
+         <div class="error-info">{{errorMsg}}</div>
+      </div>
+   </div>
+   
+</form>

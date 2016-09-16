@@ -4,7 +4,7 @@ import {Http, Headers} from 'angular2/http';
 import 'rxjs/add/operator/map';
 export class User {
     constructor(
-        public email: string,
+        public name: string,
         public password: string,
         public grantType: string) {}
 }

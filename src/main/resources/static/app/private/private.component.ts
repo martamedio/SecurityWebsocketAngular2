@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
-import {AuthenticationService} from './authentication.service'
+import {AuthenticationService} from 'app/login/authentication.service'
 import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
-import { WebsocketComponent } from './websocket.component';
+import { WebsocketComponent } from 'app/ws/websocket.component';
 
 @RouteConfig([
     { path: '/Websocket', name: 'Websocket', component: WebsocketComponent, useAsDefault: true },
@@ -11,19 +11,7 @@ import { WebsocketComponent } from './websocket.component';
     selector: 'login-form',
     providers: [AuthenticationService],
     directives: [ROUTER_DIRECTIVES],
-    template: `
-
-            <div class="container" >
-                <div class="content">
-                    <span>This is a private area, you have successfully logged in!!</span>
-                    <a (click)="logout()" href="#">Click Here to logout</a>
-                </div>
-            </div>
-                <nav>
-
-			    </nav>
-    		<router-outlet></router-outlet>
-    	`
+    templateUrl: 'app/private/header.component.html'
 })
 
 export class PrivateComponent {

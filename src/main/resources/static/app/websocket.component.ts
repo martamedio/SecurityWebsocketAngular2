@@ -1,6 +1,6 @@
 import {Component, OnInit } from 'angular2/core';
 import { Router }            from 'angular2/router';
-import {$WebSocket} from './ng2-websocket';
+import {$WebSocket} from 'app/lib/ng2-websocket';
 
 @Component({
   selector: 'my-websocket',

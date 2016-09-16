@@ -1,10 +1,14 @@
-.login-info{
+/*** Login ***/
+.form-group{
 	text-align: center;
-    font-size: 13px;
 }
-.login{
-	padding-top: 3%;
+.login-info{
+	font-size: 11px;
 }
 .error-info{
 	color: red;
+}
+/*** Header ***/
+.logout{
+	float: right;
 }

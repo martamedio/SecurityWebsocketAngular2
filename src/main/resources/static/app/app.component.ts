@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
-import {LoginComponent} from './login.component';
-import {PrivateComponent} from './private.component';
-import {WebsocketComponent} from './websocket.component';
+import {LoginComponent} from 'app/login/login.component';
+import {PrivateComponent} from 'app/private/private.component';
+import {WebsocketComponent} from 'app/ws/websocket.component';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
