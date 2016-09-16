@@ -12,7 +12,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 /**
- * Handler to send messages through the websocket
+ * Controller for Websocket.
  */
 @Component
 public class MessagesHandler extends TextWebSocketHandler {
