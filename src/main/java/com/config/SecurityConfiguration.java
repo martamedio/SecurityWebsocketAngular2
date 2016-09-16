@@ -57,6 +57,8 @@ public class SecurityConfiguration {
 
 		@Override
 		public void configure(WebSecurity webSecurity) throws Exception {
+			// Front-end files
+			webSecurity.ignoring().antMatchers("/app/**");
 			// Websocket security
 			webSecurity.ignoring().antMatchers("/message");
 		}
