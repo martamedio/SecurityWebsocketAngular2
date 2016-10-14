@@ -1,19 +1,24 @@
 package com.bean;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * User information for Spring Security Authentication
  *
  * */
-public class User implements Serializable {
+public class User implements UserDetails, Serializable {
 
 	/**
-	 * Id.
-	 * */
-    private String id;
+	 * Serial Version UID
+	 */
+	private static final long serialVersionUID = -8317788343943280009L;
 
 	/**
 	 * Username.
@@ -44,27 +49,6 @@ public class User implements Serializable {
 	 * Enabled users.
 	 * */
     private boolean enabled;
-
-	/**
-	 * Roles.
-	 * */
-    private Set<String> roles = new HashSet<String>();
-
-	/**
-	 * Add a role.
-	 * @param role String
-	 * */
-    public void addRole(String role) {
-        roles.add(role);
-    }
-
-	/**
-	 * Get roles.
-	 * @return Set<String>
-	 * */
-    public Set<String> getRoles() {
-        return roles;
-    }
 
 	/**
 	 * Get username.
@@ -161,4 +145,12 @@ public class User implements Serializable {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// Dummy
+		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
+		roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+		return roles;
+	}
 }

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,7 +22,6 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 
 import com.service.CustomUserDetailsService;
 import com.service.IClientOAuth2DetailsService;
-import com.utils.OAuth2ClientConstants;
 
 /**
  * Class for Spring Security Configuration.
@@ -57,9 +55,8 @@ public class SecurityConfiguration {
 
 		@Override
 		public void configure(WebSecurity webSecurity) throws Exception {
-			// Front-end files
-			webSecurity.ignoring().antMatchers("/app/**");
 			// Websocket security
+			webSecurity.ignoring().antMatchers("/app/**");
 			webSecurity.ignoring().antMatchers("/message");
 		}
 
@@ -81,14 +78,9 @@ public class SecurityConfiguration {
 
 			// Anyone can request for a security token
 			http.authorizeRequests().antMatchers("/oauth/token", "/", "/app/*").anonymous();
-			//
-			// We require an specific authentication scope for get data
-			http.authorizeRequests().antMatchers("/**")
-					.access("#oauth2.hasScope('" + OAuth2ClientConstants.Scopes.USER_SCOPE.getScope() + "')");
 
-			// We can set the security by HTTP Methods
-			http.authorizeRequests().antMatchers(HttpMethod.GET, "/**")
-					.access("#oauth2.hasScope('" + OAuth2ClientConstants.Scopes.ADMIN_SCOPE.getScope() + "')");
+			// All petitions except token one needs authentication
+			http.authorizeRequests().anyRequest().fullyAuthenticated();
 
 		}
 

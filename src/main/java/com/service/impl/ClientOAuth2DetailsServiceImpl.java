@@ -25,7 +25,7 @@ public class ClientOAuth2DetailsServiceImpl implements IClientOAuth2DetailsServi
      * @throws Exception en la creacion de los clientes.
      */
     public ClientOAuth2DetailsServiceImpl() throws Exception {
-		// TODO: Do really want our client in memory?
+		// Dummy client scope
 		internalClientDetailsService = new InMemoryClientDetailsServiceBuilder().withClient("admin").secret("admin")
 				.authorizedGrantTypes(OAuth2ClientConstants.AuthorizedGrantTypes.PASSWORD.getType())
 				.scopes(OAuth2ClientConstants.Scopes.ADMIN_SCOPE.getScope(),

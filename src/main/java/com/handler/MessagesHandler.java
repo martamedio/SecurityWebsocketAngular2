@@ -54,7 +54,7 @@ public class MessagesHandler extends TextWebSocketHandler {
         if ("CLOSE".equalsIgnoreCase(message.getPayload())) {
             session.close();
         } else {
-            System.out.println("Received:" + message.getPayload());
+            System.out.println("Received: " + message.getPayload());
         }
     }
 

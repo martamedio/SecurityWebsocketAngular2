@@ -1,11 +1,5 @@
 package com.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,7 +15,6 @@ import com.bean.User;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -36,28 +29,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		user.setAccountNonExpired(true);
 		user.setAccountNonLocked(true);
 		user.setCredentialsNonExpired(true);
-		user.addRole("ROLE_USER");
+		return user;
 
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-				true, true, user.isCredentialsNonExpired(), user.isAccountNonLocked(),
-				getAuthorities(user));
-
-	}
-
-	/**
-	 * Return the authorities.
-	 *
-	 * @param user
-	 *            User
-	 * @return List<GrantedAuthority>
-	 */
-	private List<GrantedAuthority> getAuthorities(User user) {
-		Set<String> roles = user.getRoles();
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for (String role : roles) {
-			authorities.add(new SimpleGrantedAuthority(role));
-		}
-		return authorities;
 	}
 
 }
