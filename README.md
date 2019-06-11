@@ -1,3 +1,5 @@
+> Please, take into account that this project was developed in 2016, so the versions used and the procedure to address this may be obsolete
+
 # SecurityWebsocketAngular2
 
 This is a small web demo using Spring Boot + Spring Security for authentication + Websocket + Angular2, I'm using it for playing and learning how Angular2 works (I'm importing Angular2 from a CND at index.html).
